@@ -1,5 +1,6 @@
 {
     "name": "abstracts-core",
+    "contributors": ["dionjwa"],
     "url": "https://github.com/dionjwa/hx-abstracts",
     "description": "A collection of useful abstracts to prevent typos and mistakes when e.g. strings have multiple meanings.",
     "classPath": "src",
