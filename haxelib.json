@@ -1,0 +1,9 @@
+{
+    "name": "abstracts-core",
+    "url": "https://github.com/dionjwa/hx-abstracts",
+    "description": "A collection of useful abstracts to prevent typos and mistakes when e.g. strings have multiple meanings.",
+    "classPath": "src",
+    "license": "MIT",
+    "version": "0.1.0",
+    "releasenote": "Initial Release"
+}

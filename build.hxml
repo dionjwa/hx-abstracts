@@ -1,0 +1,5 @@
+-cp src
+-cp test/src
+-js runtest.js
+-main Main
+-cmd node runtest.js
