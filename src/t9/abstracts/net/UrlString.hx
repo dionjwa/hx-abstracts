@@ -19,15 +19,15 @@ abstract UrlString(String)
 		return new UrlString(s);
 	}
 
-	inline public function getHost() :Host
+	public function getHost() :Host
 	{
 #if nodejs
-		return new Host(return js.npm.Url.parse(this, true));
+		var urlObj = js.node.Url.parse(this, true);
+		var hostName = new HostName(urlObj.hostname);
+		var port = urlObj.port != null ? Port.fromString(urlObj.port) : null;
+		return new Host(hostName, port);
 #else
-		var s :String = stripProtocol(this).split('/')[0];
-		var host :Host = s;
-		return host;
-		// return new Host(new HostName(s));
+		return Host.fromString(stripProtocol(this).split('/')[0]);
 #end
 	}
 
