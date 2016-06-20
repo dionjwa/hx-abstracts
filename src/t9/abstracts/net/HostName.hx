@@ -2,7 +2,7 @@ package t9.abstracts.net;
 
 using StringTools;
 
-abstract HostName(String)
+abstract HostName(String) to String
 {
 	inline public function new (s: String)
 	{
@@ -10,11 +10,5 @@ abstract HostName(String)
 			throw 'HostName does not include the protocol';
 		}
 		this = s;
-	}
-
-	@:to
-	inline public function toString() :String
-	{
-		return this;
 	}
 }

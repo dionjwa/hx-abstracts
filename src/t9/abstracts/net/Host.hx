@@ -6,7 +6,7 @@ package t9.abstracts.net;
 abstract Host(String)
 {
 	inline public function new (h :HostName, ?p :Null<Port>)
-		this = h.toString() + (p != null ? ':' + p : '');
+		this = h + (p != null ? ':' + p : '');
 
 	@:to
 	inline public function toString() :String

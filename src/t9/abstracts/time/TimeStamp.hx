@@ -1,74 +1,71 @@
 package t9.abstracts.time;
 
 /* Timestamp measured in milliseconds */
-abstract TimeStamp(Float)
+abstract TimeStamp(Milliseconds) to Milliseconds from Milliseconds
 {
 	inline public function new(ms :Milliseconds) this = ms;
 
 	@:to
 	inline public function toFloat() :Float
 	{
-		return this;
+		return this.toFloat();
 	}
 
 	@:to
 	inline public function toInt() :Int
 	{
-		return Std.int(this);
+		return Std.int(this.toFloat());
 	}
 
 	inline public static function now() :TimeStamp
 	{
-#if js
-		return new TimeStamp(untyped __js__('Date.now() + 0.0'));
-#else
-		throw 'Implement TimeStamp.now()';
-#end
+		var timeInMs :Milliseconds = new Milliseconds(Date.now().getTime());
+		return new TimeStamp(timeInMs);
 	}
 
 	@:to
 	inline public function toString() :String
 	{
-		return Date.fromTime(this).toString();
+		return Date.fromTime(this.toFloat()).toString();
 	}
 
 	inline public function addSeconds(s :Seconds) :TimeStamp
 	{
-		return new TimeStamp(new Milliseconds(this + s.toMilliseconds().toFloat()));
+		return new TimeStamp(this + s.toMilliseconds());
 	}
 
-	inline public function subtractSeconds(rhs:Seconds):TimeStamp
+	inline public function subtractSeconds(rhs:Seconds) :TimeStamp
 	{
-		return new TimeStamp(new Milliseconds(this - rhs.toMilliseconds().toFloat()));
+		return new TimeStamp(this - rhs.toMilliseconds());
 	}
 
 	@:op(A + B)
 	inline public function add(rhs:TimeStamp):Milliseconds
 	{
-		return new Milliseconds(this + rhs.toFloat());
+		return new Milliseconds(this + rhs);
 	}
 
 	@:op(A - B)
 	inline public function subtract(rhs:TimeStamp):Milliseconds
 	{
-		return new Milliseconds(this - rhs.toFloat());
+		return new Milliseconds(this - rhs);
 	}
 
 	@:op(A > B)
 	inline public function gt(rhs:TimeStamp):Bool
 	{
-		return this > rhs.toFloat();
+		return this.toFloat() > rhs.toFloat();
 	}
 
 	@:op(A < B)
 	inline public function lt(rhs:TimeStamp):Bool
 	{
-		return this < rhs.toFloat();
+		return this.toFloat() < rhs.toFloat();
 	}
 
 	@:op(A == B)
 	inline public function eq(rhs:TimeStamp):Bool
 	{
-		return this == rhs.toFloat();
+		return this.toFloat() == rhs.toFloat();
 	}
 }

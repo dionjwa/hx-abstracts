@@ -55,6 +55,6 @@ abstract Milliseconds(Float)
 	@:to
 	inline public function toString() :String
 	{
-		return '[${this}ms]';
+		return '[${toFloat()}ms]';
 	}
 }
